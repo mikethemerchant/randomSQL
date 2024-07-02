@@ -1,0 +1,16 @@
+-- get date of today
+
+SELECT GETDATE()
+
+-- strip off time
+SELECT DATEADD(dd, DATEDIFF(dd, 0, GETDATE()), 0) AS DateWithoutTime
+
+-- get day of week
+SELECT DATEPART(WEEKDAY, GETDATE())
+SELECT DATEPART(WEEKDAY, '2024-07-02 13:47:39.483')
+
+SELECT DATEADD(dd, DATEDIFF(dd, 0,   DATEADD(DAY, ( 1 - DATEPART(WEEKDAY, DATEADD(dd, DATEDIFF(dd, 0, GETDATE()), 0) ) ), GETDATE() ) ), 0)
+
+--2024-07-02 13:47:39.483
+
+SELECT dateadd(dd, -1*(DATEPART(dw, DATEADD(dd, DATEDIFF(dd, 0, GETDATE()), 0))-1), DATEADD(dd, DATEDIFF(dd, 0, GETDATE()), 0))
